@@ -27,6 +27,8 @@ fetchNeighborhoods = () => {
   });
 }
 
+navigator.serviceWorker.register('/sw.js');
+
 /**
  * Set neighborhoods HTML.
  */
