@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
+* {
+  box-sizing: border-box;
+}
 body,td,th,p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
@@ -215,7 +218,7 @@ nav h1 a {
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 87%;
+  height: 500px;
   position: fixed;
   right: 0;
   top: 80px;
@@ -303,10 +306,15 @@ nav h1 a {
   .inside #map-container{
     width: 100%;
     height: 400px;
-    position: static;
+    position: relative;
+    margin-bottom: 150px;
   }
 
   .inside #not-map{
     width: 100%;
+  }
+
+  .inside #restaurant-container{
+    padding: 0px 40px 30px;
   }
 }

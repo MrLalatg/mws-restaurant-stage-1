@@ -6,9 +6,9 @@ self.addEventListener('install', function(event) {
     caches.open(staticCacheName).then(function(cache) {
       return cache.addAll([
         '/',
-        'js/',
-        'css/style.css',
-        'img/'
+        '/js/main.js',
+        '/js/restaurant_info.js',
+        '/css/styles.css'
       ]);
     })
   );
@@ -31,10 +31,16 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-
   event.respondWith(
     caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
+      return response || fetch(event.request).then(function(inResp){
+        const respond = inResp;
+        caches.open(staticCacheName).then(function(cache){
+          if(event.request.method === 'GET'){
+            cache.put(event.request, respond);
+          }
+        });
+      });
     })
   );
 });

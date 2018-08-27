@@ -162,6 +162,43 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
+  let alt = "default";
+  switch(DBHelper.imageUrlForRestaurant(restaurant)){
+    case '/img/1.jpg':
+      alt = 'picture of people are sitting at the table in restaurant';
+      break;
+    case '/img/2.jpg':
+      alt = 'picture of pizza';
+      break;
+    case '/img/3.jpg':
+      alt = 'picture of restaurant';
+      break;
+    case '/img/4.jpg':
+      alt = 'picture of restaurant shot from outside from corner';
+      break;
+    case '/img/5.jpg':
+      alt = 'picture of restaurant workers and customers';
+      break;
+    case '/img/6.jpg':
+      alt = 'picture of people in the restaurant standing in front of united states flag';
+      break;
+    case '/img/7.jpg':
+      alt = 'picture of two guys with the dog standing in front og the mirror';
+      break;
+    case '/img/8.jpg':
+      alt = 'picture of "the Dutch" signboard';
+      break;
+    case '/img/9.jpg':
+      alt = 'picture of woman using smartphone in the restaurant';
+      break;
+    case '/img/1.jpg0':
+      alt = 'picture of the empty restaurant in white colors';
+      break;
+    default:
+      alt = 'picture of a restaurant';
+      break;
+  }
+  image.setAttribute('alt', alt);
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
 
