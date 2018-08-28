@@ -15,7 +15,8 @@ initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);
-    } else {      
+    } else {
+      console.log(L);      
       self.newMap = L.map('map', {
         center: [restaurant.latlng.lat, restaurant.latlng.lng],
         zoom: 16,
@@ -87,8 +88,45 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
+  image.className = 'restaurant-img';
+  let alt = "default";
+  switch(DBHelper.imageUrlForRestaurant(restaurant)){
+    case '/img/1.jpg':
+      alt = 'picture of people are sitting at the table in restaurant';
+      break;
+    case '/img/2.jpg':
+      alt = 'picture of pizza';
+      break;
+    case '/img/3.jpg':
+      alt = 'picture of restaurant';
+      break;
+    case '/img/4.jpg':
+      alt = 'picture of restaurant shot from outside from corner';
+      break;
+    case '/img/5.jpg':
+      alt = 'picture of restaurant workers and customers';
+      break;
+    case '/img/6.jpg':
+      alt = 'picture of people in the restaurant standing in front of united states flag';
+      break;
+    case '/img/7.jpg':
+      alt = 'picture of two guys with the dog standing in front og the mirror';
+      break;
+    case '/img/8.jpg':
+      alt = 'picture of "the Dutch" signboard';
+      break;
+    case '/img/9.jpg':
+      alt = 'picture of woman using smartphone in the restaurant';
+      break;
+    case '/img/1.jpg0':
+      alt = 'picture of the empty restaurant in white colors';
+      break;
+    default:
+      alt = 'picture of a restaurant';
+      break;
+  }
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('alt', alt);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
